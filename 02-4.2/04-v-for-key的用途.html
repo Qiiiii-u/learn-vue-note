@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		<!-- 	<ul>
+				<li v-for="(value, key) in data">{{key}}:{{value}}</li>
+			</ul>
+			<ul>
+				<li v-for="(item, index) in movies">{{index}}-{{item}}</li>
+			</ul> -->
+			
+			<ul>
+				<li v-for="(item, index) in movies">{{index}}-{{item}}</li>
+			</ul>
+			<button @click="btn">按钮</button>
+		</div>
+		
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello world',
+					movies: ['01', '02', '03', '04'],
+					data: {
+						name: 'lii',
+						age: 19,
+						address: '地址'
+					}
+				},
+				methods:{
+					btn(){
+						// this.movies.push('aa') // 最后面加元素
+						// this.movies.shift() // 删除第一个元素
+						// this.movies.pop() // 删除最后一个
+						// this.movies.unshift('aa') // 最前面加元素
+						
+						// splice插入/删除/替换元素
+						// 删除元素： 第二个参数传入要删除的几个元素(如果没有，则删除后面的所有元素)
+						// 替换元素： 第二个参数传入要替换的几个元素，后面则是替换的元素
+						// 插入元素： 第二个参数为0，后面为插入的元素
+						// this.movies.splice(1, 0, 'm', 'n')
+						
+						// this.movies.sort() // 排序
+						// this.movies.reverse() // 反转
+						
+						// this.movies[0] = 'a' // 非响应式修改
+						Vue.set(this.movies, 0, 'aaa') // 响应式修改
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

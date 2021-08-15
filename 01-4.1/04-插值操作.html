@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			[v-cloak] {
+				color: aqua;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- {{}} mustache语法 胡子语法 -->
+		<div id="app">
+			<!-- v-once只渲染数据一次 -->
+			<h2 v-once>{{message}}</h2>
+			<h2 v-html="url"></h2>
+			<!-- v-pre不解析 -->
+			<h2 v-pre>{{message}}</h2>
+			<!-- v-cloak 斗篷 当data渲染失败/花时过长后默认显示 -->
+			<!-- 即解析前显示 -->
+			<h2 v-cloak>{{message}}</h2>
+		</div>
+		
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello world',
+					url: '<a href="#">测测</a>'
+				}
+			})
+		</script>
+	</body>
+</html>

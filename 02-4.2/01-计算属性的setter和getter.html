@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>{{hello}} {{world}}</h2>
+			<h2>{{full}}</h2>
+		</div>
+		
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					hello: 'hello',
+					world: 'world',
+				},
+				methods:{
+
+				},
+				// 计算属性一般没有set方法，只读属性
+				computed: {
+					full:{
+						set: function(newValue){
+							const names = newValue.split(' ')
+							this.hello = names[0]
+							this.world = names[1]
+						},
+						get: function(){
+							return this.hello + ' ' + this.world
+						}
+					},
+				}
+			})
+		</script>
+	</body>
+</html>

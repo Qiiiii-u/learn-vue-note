@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 多个元素同时放入，则全部显示 -->
+			<!-- <cpn>
+				<a href="#">hh</a>
+				<h3>hhh</h3>
+			</cpn> -->
+			
+			<!-- 指定插槽 -->
+			<cpn>
+				<span slot="left">左边</span>
+				<span slot="center">中间</span>
+				<span slot="right">右边</span>
+			</cpn>
+		</div>
+		
+		<template id="cpn">
+			<div>
+				<h3>子组件1</h3>
+				<!-- 插槽 默认值设置 按钮 -->
+				<!-- <slot><button>按钮</button></slot> -->
+				
+				<!-- 不同位置的插槽 -->
+				<slot name="left"></slot>
+				<slot name="center"></slot>
+				<slot name="right"></slot>
+			</div>
+		</template>
+		
+		<script src="../js/vue.js"></script>
+		<script>			
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello'
+				},
+				components:{
+					cpn:{
+						template:'#cpn',
+					}
+				},
+				methods:{
+				}
+			})
+		</script>
+	</body>
+</html>

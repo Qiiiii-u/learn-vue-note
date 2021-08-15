@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">{{ message }}</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			// let(ES6变量) const(ES6常量)
+			const app = new Vue({
+				el: '#app',// 用于挂载要管理的元素
+				data: { // 定义数据
+					message: 'hello world'
+				}
+			})
+		</script>
+	</body>
+</html>

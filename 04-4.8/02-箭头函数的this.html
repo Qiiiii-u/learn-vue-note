@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 什么时候用箭头函数
+			setTimeout(function(){
+				console.log(this) // window
+			},1000)
+			
+			setTimeout(() => {
+				console.log(this) // window
+			},1000)
+			
+			// 结论 箭头函数中的this引用的是最近作用域的this
+			const obg = {
+				setTimeout(function(){
+					console.log(this) // window
+					
+					setTimeout(function(){
+						console.log(this) // window
+					},1000)
+					
+					setTimeout(() => {
+						console.log(this) // window
+					},1000)
+					
+				},1000)
+				
+				setTimeout(() => {
+					console.log(this) // obj
+				},1000)
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>当前计数：{{count}}</h2>
+		<!-- 	<button @click="count++">+</button>
+			<button v-on:click="count--">-</button> -->
+			<button @click="add">+</button>
+			<!-- @click 语法糖：简写 -->
+			<button v-on:click="sub">-</button>
+		</div>
+		<!-- view模块 -->
+		
+		<script src="../js/vue.js"></script>
+		<script>
+			// model模块——data
+			// proxy 代理
+			const obj = {
+				count: 0
+			}
+			// viewmodel模块——new Vue({})
+			const app = new Vue({
+				// el: '#app',
+				el: document.querySelector('#app'),
+				data: obj,
+				// end
+				methods: {
+					add: function(){
+						this.count++
+					},
+					sub: function(){
+						this.count--
+					}
+				},
+				beforeCreate: function() {
+					
+				},
+				created: function() {
+					
+				},
+				mounted: function(){
+					
+				}
+			})
+		</script>
+	</body>
+</html>

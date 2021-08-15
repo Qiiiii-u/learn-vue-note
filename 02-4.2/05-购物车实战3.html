@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			table{
+				border: 1px solid #D2691E;
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+			th, td{
+				padding: 8px 16px;
+				border: 1px solid #D2691E;
+				text-align: left;
+			}
+			th{
+				background-color: lightgoldenrodyellow;
+				color: black;
+				font-weight: 600;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div v-if="books.length != 0">
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th>书籍名称</th>
+							<th>出版日期</th>
+							<th>价格</th>
+							<th>购买数量</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(item, index) in books">
+							<td>{{item.id}}</td>
+							<td>{{item.name}}</td>
+							<td>{{item.date}}</td>
+							<!-- <td>¥{{item.price.toFixed(2)}}</td> -->
+							<!-- <td>{{getFinalPrice(item.price)}}</td> -->
+							<td>{{item.price | showPrice}}</td>
+							<td>
+								<button @click="decrement(index)" :disabled="item.count <= 1">-</button>
+								{{item.count}}
+								<button @click="increment(index)">+</button>
+							</td>
+							<td><button @click="removeBtn(index)">移除</button></td>
+						</tr>
+					</tbody>
+				</table>
+				<span>总价格：{{totalPrice | showPrice}}</span>
+			</div>
+			<div v-else>购物车为空</div>
+		</div>
+		
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					books: [
+						{id: 1, name: 'lili', date: '2006-03', price: 100, count: 1},
+						{id: 2, name: 'fsi', date: '2005-03', price: 200, count: 2}
+					]
+				},
+				methods:{
+					// getFinalPrice(price){
+					// 	return '¥' + price.toFixed(2)
+					// }
+					increment(index){
+						this.books[index].count++
+					},
+					decrement(index){
+						this.books[index].count--
+					},
+					removeBtn(index){
+						this.books.splice(index, 1)
+					},
+					test(){
+						const nums = [10, 20, 30, 11, 810, 2,3]
+						// 高阶函数
+						// filter
+						// let newnum = nums.filter(function(n){
+						// 	return n > 20
+						// })
+						// 箭头函数
+						// let newnum = nums.filter(n=>n>2)
+						// console.log(newnum)
+						
+						// map
+						// let newnum = nums.map(function(n){
+						// 	return n * 2
+						// })
+						// let newnum = nums.map(n=>n*2)
+						// console.log(newnum)
+						
+						// reduce
+						// let newnum = nums.reduce(function(x, y){
+						// 	return x+y
+						// })
+						// let newnum = nums.reduce((x, y)=>x+y)
+						// console.log(newnum)
+					}
+				},
+				filters:{
+					showPrice(price){
+						return '¥' + price.toFixed(2)
+					}
+				},
+				computed:{
+					totalPrice(){
+						// let totalPrice = 0
+						// for (let i =0; i<this.books.length; i++) {
+						// 	totalPrice += this.books[i].price * this.books[i].count
+						// }
+						// for (let i in this.books) {
+						// 	totalPrice += this.books[i].price * this.books[i].count
+						// }
+						// for (let item of this.books){
+						// 	totalPrice += item.price * item.count
+						// }
+						// this.books.forEach(item=>{
+						// 	totalPrice += item.price * item.count
+						// })
+						// totalPrice = this.books.reduce(function(x.price, y.price){
+						// 	return x.price + y.price
+						// })
+						// return totalPrice
+						return this.books.reduce(function(x, y){
+							return x + y.price * y.count
+						}, 0)
+					}
+				},
+				created() {
+					this.test()
+				}
+			})
+		</script>
+	</body>
+</html>

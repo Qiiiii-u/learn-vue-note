@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">{{ message }}</div>
+		<button>按钮1</button>
+		<button>按钮2</button>
+		<button>按钮3</button>
+		<button>按钮4</button>
+		<button>按钮5</button>
+		<script src="../js/vue.js"></script>
+		<script>
+			// let(ES6变量) const(ES6常量)
+			const app = new Vue({
+				el: '#app',// 用于挂载要管理的元素
+				data: { // 定义数据
+					message: 'hello world'
+				}
+			})
+		</script>
+		<script>
+			// var作用域内外都能用，变成全局变量
+			// {
+			// 	var name = 'why';
+			// 	console.log(name);
+			// }
+			// console.log(name)
+			
+			const btns = document.getElementsByTagName('button')
+			for(let i=0; i<btns.length; i++){
+				btns[i].addEventListener('click', function(){
+					console.log('第'+ i)
+				})
+			}
+		</script>
+	</body>
+</html>
